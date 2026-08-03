@@ -18,7 +18,7 @@ class CreateProductionDetailsTable extends Migration
             $table->unsignedBigInteger('production_id');
             $table->unsignedBigInteger('product_id');
             $table->decimal('quantity', 6, 2)->default(0.00);
-            $table->timestamps()->default('current_timestamp()');
+            $table->timestamps();
             
             $table->foreign('product_id', 'fk_production_details_product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('production_id', 'fk_production_details_production_id')->references('id')->on('productions')->onDelete('cascade');

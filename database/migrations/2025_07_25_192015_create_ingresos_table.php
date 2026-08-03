@@ -17,7 +17,7 @@ class CreateIngresosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('headquarter_id');
             $table->dateTime('fecha')->nullable();
-            $table->timestamps()->default('current_timestamp()');
+            $table->timestamps();
             $table->tinyInteger('turno');
             
             $table->foreign('headquarter_id', 'fk_ingresos_headquarter_id')->references('id')->on('headquarters')->onDelete('cascade');

@@ -18,7 +18,7 @@ class CreateIngresoDetailsTable extends Migration
             $table->unsignedBigInteger('ingreso_id');
             $table->unsignedBigInteger('product_id');
             $table->decimal('quantity', 6, 2)->default(0.00);
-            $table->timestamps()->default('current_timestamp()');
+            $table->timestamps();
             
             $table->foreign('ingreso_id', 'fk_ingreso_details_ingreso_id')->references('id')->on('ingresos')->onDelete('cascade');
             $table->foreign('product_id', 'fk_ingreso_details_product_id')->references('id')->on('products')->onDelete('cascade');

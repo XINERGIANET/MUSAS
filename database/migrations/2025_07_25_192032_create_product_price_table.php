@@ -19,7 +19,7 @@ class CreateProductPriceTable extends Migration
             $table->unsignedBigInteger('headquarter_id')->nullable();
             $table->decimal('unit_price', 10, 2)->nullable();
             $table->boolean('estado')->default(0);
-            $table->timestamps()->default('current_timestamp()');
+            $table->timestamps();
             
             $table->foreign('headquarter_id', 'fk_headquarters')->references('id')->on('headquarters')->onDelete('set NULL');
             $table->foreign('product_id', 'fk_products')->references('id')->on('products')->onDelete('set NULL');

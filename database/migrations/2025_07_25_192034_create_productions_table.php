@@ -17,7 +17,7 @@ class CreateProductionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('headquarter_id');
             $table->dateTime('fecha')->default('current_timestamp()');
-            $table->timestamps()->default('current_timestamp()');
+            $table->timestamps();
             $table->tinyInteger('turno');
             
             $table->foreign('headquarter_id', 'fk_productions_headquarter_id')->references('id')->on('headquarters')->onDelete('cascade');

@@ -18,7 +18,7 @@ class CreateProductProvidersTable extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->boolean('estado')->default(0);
-            $table->timestamps()->default('current_timestamp()');
+            $table->timestamps();
             
             $table->foreign('product_id', 'fk_product')->references('id')->on('products')->onDelete('set NULL');
             $table->foreign('supplier_id', 'fk_supplier')->references('id')->on('suppliers')->onDelete('set NULL');

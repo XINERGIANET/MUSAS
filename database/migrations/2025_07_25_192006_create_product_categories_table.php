@@ -18,7 +18,7 @@ class CreateProductCategoriesTable extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('nombre', 100);
             $table->integer('estado')->default(0)->comment("0: Activo, 1: Inactivo");
-            $table->timestamps()->default('current_timestamp()');
+            $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
             
             $table->foreign('category_id', 'fk_product_categories_category')->references('id')->on('category');
