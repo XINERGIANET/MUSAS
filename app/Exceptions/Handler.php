@@ -73,7 +73,7 @@ class Handler extends ExceptionHandler
         }
 
         // Para cualquier otro error, mostrar página de mantenimiento
-        if (app()->environment('local')) {
+        if (!config('app.debug') && app()->environment('production')) {
             return response()->view('errors.maintenance', [
                 'message' => 'Estamos experimentando problemas técnicos temporales'
             ], 500);
