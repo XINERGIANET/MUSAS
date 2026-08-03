@@ -21,7 +21,7 @@ class CreateConsumptionsTable extends Migration
             $table->tinyInteger('merma')->nullable();
             $table->string('area', 20)->default('0');
             $table->unsignedBigInteger('staff_id');
-            $table->date('date')->default('curdate()');
+            $table->date('date');
             $table->timestamps();
             $table->boolean('estado')->default(0);
             

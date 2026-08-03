@@ -18,7 +18,7 @@ class CreateExpensesTable extends Migration
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('tipo_comprobante');
             $table->string('invoice_number')->nullable();
-            $table->date('date')->default('current_timestamp()');
+            $table->date('date');
             $table->unsignedBigInteger('payment_method_id');
             $table->unsignedBigInteger('sede_id')->nullable();
             $table->tinyInteger('turno')->nullable();

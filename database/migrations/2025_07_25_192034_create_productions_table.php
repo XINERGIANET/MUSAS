@@ -16,7 +16,7 @@ class CreateProductionsTable extends Migration
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('headquarter_id');
-            $table->dateTime('fecha')->default('current_timestamp()');
+            $table->dateTime('fecha')->useCurrent();
             $table->timestamps();
             $table->tinyInteger('turno');
             
