@@ -885,6 +885,7 @@
                         <ul class="navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
 
                             @if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('delivery') || auth()->user()->hasRole('Xinergia')))
+                            @auth
                             <li class="nav-item dropdown">
                                 @php
                                 $sedes = \App\Models\Headquarters::where('estado', 0)->get();
@@ -928,19 +929,26 @@
                                     </svg>
                                     @php
 
-                                    $ind = App\Models\Storage2::whereHas('product', function ($query) {
-                                    $query->where('products.estado', '=', 0);
-                                    })
-                                    ->whereColumn('quantity','<=','stock_minimo')
-                                        ->where('estado',0)
-                                        ->get();
+                                    $ind = collect();
+                                    $hq = collect();
 
-                                        $hq = App\Models\Storage3::whereHas('product', function ($query) {
-                                        $query->where('products.estado', '=', 0);
+                                    if (\Illuminate\Support\Facades\Schema::hasColumns('storage2s', ['product_id', 'quantity', 'stock_minimo', 'estado'])) {
+                                        $ind = App\Models\Storage2::whereHas('product', function ($query) {
+                                            $query->where('products.estado', '=', 0);
                                         })
-                                        ->whereColumn('quantity','<=','stock_minimo')
-                                            ->where('estado',0)
-                                            ->get();
+                                        ->whereColumn('quantity', '<=', 'stock_minimo')
+                                        ->where('estado', 0)
+                                        ->get();
+                                    }
+
+                                    if (\Illuminate\Support\Facades\Schema::hasColumns('storage3s', ['product_id', 'quantity', 'stock_minimo', 'estado'])) {
+                                        $hq = App\Models\Storage3::whereHas('product', function ($query) {
+                                            $query->where('products.estado', '=', 0);
+                                        })
+                                        ->whereColumn('quantity', '<=', 'stock_minimo')
+                                        ->where('estado', 0)
+                                        ->get();
+                                    }
 
                                             $items = $ind->merge($hq);
 
@@ -978,6 +986,7 @@
                                     </div>
                                 </div>
                             </li>
+                            @endauth
 
                             <li class="nav-item dropdown">
                                 <a class="py-0 nav-link d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
