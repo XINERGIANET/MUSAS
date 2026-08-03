@@ -64,7 +64,7 @@
         </div>
     </div>
     <!-- loader END -->
-    @if(!(auth()->user()->hasRole('adminSede') || auth()->user()->hasRole('delivery')))
+    @if(auth()->check() && !(auth()->user()->hasRole('adminSede') || auth()->user()->hasRole('delivery')))
     <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
         <div class="sidebar-header d-flex align-items-center justify-content-start">
             <a href="{{ route('reports.index')}}" class="navbar-brand">
@@ -113,7 +113,7 @@
                 <!-- Sidebar Menu Start -->
                 <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
 
-                    @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia'))
+                    @if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia')))
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('reports.index') }}">
                             <i class="icon">
@@ -350,7 +350,7 @@
                     </li>
                     @endif
 
-                    @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia'))
+                    @if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia')))
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-maps" role="button" aria-expanded="false" aria-controls="sidebar-maps">
                             <i class="icon">
@@ -403,7 +403,7 @@
                     </li>
                     @endif
 
-                    @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia'))
+                    @if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia')))
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-production" role="button" aria-expanded="false" aria-controls="sidebar-production">
                             <i class="icon">
@@ -587,7 +587,7 @@
                     </li>
                     @endif
                     
-                    @if(!auth()->user()->hasRole('delivery'))
+                    @if(auth()->check() && !auth()->user()->hasRole('delivery'))
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-movements" role="button" aria-expanded="false" aria-controls="sidebar-widget">
 
@@ -700,7 +700,7 @@
                     </li>
                     @endif
 
-                    @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia'))
+                    @if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('Xinergia')))
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-widget" href="#sidebar-reports">
                             <i class="icon">
@@ -812,7 +812,7 @@
                     </li>
                     @endif
 
-                    @if(auth()->user()->hasRole('produccion'))
+                    @if(auth()->check() && auth()->user()->hasRole('produccion'))
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('sales.anticipated') }}">
                             <i class="icon">
@@ -843,7 +843,7 @@
                 <div class="container-fluid navbar-inner">
                     <!-- Brand Logo -->
                     <a
-                        @if(!(auth()->user()->hasRole('adminSede') || auth()->user()->hasRole('delivery')))
+                        @if(auth()->check() && !(auth()->user()->hasRole('adminSede') || auth()->user()->hasRole('delivery')))
                          href="{{ route('reports.index') }}"
                         @else
                         href="javascript:void(0)"
@@ -884,7 +884,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
 
-                            @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('delivery') || auth()->user()->hasRole('Xinergia'))
+                            @if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('delivery') || auth()->user()->hasRole('Xinergia')))
                             <li class="nav-item dropdown">
                                 @php
                                 $sedes = \App\Models\Headquarters::where('estado', 0)->get();
@@ -904,7 +904,7 @@
                             </li>
                             @endif
                         
-                            @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('xinergia') || auth()->user()->hasRole('delivery'))
+                            @if (auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('xinergia') || auth()->user()->hasRole('delivery')))
                                 <li class="nav-item dropdown">
                                 <div class="d-flex align-items-center mx-4">
                                     <span class="form-check-label">Mañana</span>
@@ -1052,7 +1052,7 @@
         </div>
 
         <!-- Modal de Selección de Turno -->
-        @if((auth()->user()->hasRole('adminSede') || auth()->user()->hasRole('delivery')) && !(auth()->user()->email =='ALEJANDRADELIVERY' || auth()->user()->email =='RAQUELDELIVERY' || auth()->user()->email =='JAVIERDELIVERY' || auth()->user()->email =='ROSAMUSASDEL'))
+        @if(auth()->check() && (auth()->user()->hasRole('adminSede') || auth()->user()->hasRole('delivery')) && !(auth()->user()->email =='ALEJANDRADELIVERY' || auth()->user()->email =='RAQUELDELIVERY' || auth()->user()->email =='JAVIERDELIVERY' || auth()->user()->email =='ROSAMUSASDEL'))
         <div class="modal fade" id="turnoModal" tabindex="-1" aria-labelledby="turnoModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
