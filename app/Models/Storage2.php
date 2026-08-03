@@ -12,6 +12,7 @@ class Storage2 extends Model
     protected $fillable = [
         'product_id',
         'quantity',
+        'stock_minimo',
         'estado'
     ];
 

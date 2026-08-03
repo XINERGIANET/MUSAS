@@ -13,6 +13,7 @@ class Storage3 extends Model
         'headquarter_id',
         'product_id',
         'quantity',
+        'stock_minimo',
         'estado'
     ];
 
