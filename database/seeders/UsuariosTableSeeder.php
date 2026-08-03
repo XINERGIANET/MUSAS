@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Rol;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,12 +16,19 @@ class UsuariosTableSeeder extends Seeder
      */
     public function run()
     {
-        Usuario::create([
-            'nombre' => 'xinergia',
+        $role = Rol::firstOrCreate(
+            ['nombre' => 'Xinergia'],
+            ['descripcion' => 'Administrador maestro del sistema']
+        );
+
+        Usuario::updateOrCreate([
             'email' => 'xinergia',
-            'password' => Hash::make('musas'),
-            'rol_id' => 2, // ID del rol Admin
+        ], [
+            'nombre' => 'xinergia',
+            'password' => Hash::make('xinergia'),
+            'rol_id' => $role->id,
             'activo' => true,
+            'turno' => 0,
         ]);
     }
 }

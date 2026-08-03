@@ -14,7 +14,14 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Rol::create(['nombre' => 'Admin', 'descripcion' => 'Administrador del sistema']);
-        Rol::create(['nombre' => 'Xinergia', 'descripcion' => 'Maestro regular']);
+        Rol::updateOrCreate(
+            ['nombre' => 'Admin'],
+            ['descripcion' => 'Administrador del sistema']
+        );
+
+        Rol::updateOrCreate(
+            ['nombre' => 'Xinergia'],
+            ['descripcion' => 'Administrador maestro del sistema']
+        );
     }
 }
