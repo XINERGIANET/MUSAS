@@ -1,0 +1,9 @@
+#instalar composer asegurando que el php esté seteado al de la máquina (7.4.30)
+#cambiar nombres de bd o credenciales en el .env si es necesario
+#descomentar extensions=gd, extension=pdo_mysql y extension=fileinfo en php.ini (quitar el ; antes de la línea)
+#ejecutar seeder de usuarios (php artisan db:seed --class=UsuariosTableSeeder)
+
+composer install --ignore-platform-req=ext-fileinfo
+
+//no trackear cambios de .env
+git update-index --assume-unchanged .env
